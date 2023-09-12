@@ -95,3 +95,18 @@ export const toSnake = function <T>(input: T, cache?: boolean): CamelCaseToSnake
 export const dummyFunc = function () {
   console.log('dummy');
 }
+
+export const dummyFunc2 = function () {
+  console.log('dummy');
+}
+
+export const dummyFunc3 = function () {
+  console.log('dummy');
+}
+
+export const dummyFunc4 = function () {
+  console.log('dummy');
+}
+export const dummyFunc5 = function () {
+  console.log('dummy');
+}
