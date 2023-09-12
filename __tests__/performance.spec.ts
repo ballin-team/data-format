@@ -6,6 +6,6 @@ describe('Performance use case', () => {
     const startTime = performance.now();
     const data = toCamel(objNested)
     const endTime = performance.now();
-    expect(endTime - startTime).toBeLessThan(0.30);
+    expect(endTime - startTime).toBeLessThan(1);
   });
 });

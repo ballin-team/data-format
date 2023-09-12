@@ -45,7 +45,12 @@ const config: Config = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: undefined,
+  coverageThreshold: {
+    global: {
+      branches: 70,
+      functions: 70,
+    },
+  },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
@@ -197,6 +202,7 @@ const config: Config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
 };
 
 export default config;
