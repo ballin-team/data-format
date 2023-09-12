@@ -52,10 +52,19 @@
     "lib/**/*"
   ],
   "release": {
-    "branches": ["main"]
+    "branches": [
+      "main"
+    ]
   },
   "publishConfig": {
     "access": "public"
   },
-  "keywords": ["data format", "camel case", "convert to", "snake case", "object", "convert"]
+  "keywords": [
+    "data format",
+    "camel case",
+    "convert to",
+    "snake case",
+    "object",
+    "convert"
+  ]
 }

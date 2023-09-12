@@ -17,7 +17,7 @@ export type CamelCaseToSnakeNested<T> = T extends object ? {
 } : T
 
 export const snakeToCamel = (str: string): string =>
-  str.replace(/([_-][a-z])/gi, ($1: string) => $1.toUpperCase().replace('-', '').replace('_', ''));
+  str.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toUpperCase().replace('-', '').replace('_', ''));
 
 export const camelToSnake = (str: string): string => str.replace(/([A-Z])/g, ($1: string) => `_${$1.toLowerCase()}`);
 
@@ -39,7 +39,31 @@ const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => str
   return (function recurse<K extends Record<string, unknown> | Record<string, unknown>[] | unknown>(input: K): K {
     if (isObject(input)) {
       return Object.keys(input).reduce(
-        (acc, key) => Object.assign(acc, { [formatter(key)]: recurse(input[key]) }) as K,
+        (acc, key) => {
+          return Object.assign(acc, { [formatter(key)]: recurse(input[key]) }) as K
+        },
+        {} as any,
+      );
+    } else if (isArray(input)) {
+      return input.map(i => recurse(i)) as K;
+    }
+    return input;
+  })(input);
+};
+
+export const modifyObjectKeysWithCache = function <T>(input: T, formatter: (word: string) => string): any {
+  const cache: Record<string, string> = {};
+  return (function recurse<K extends Record<string, unknown> | Record<string, unknown>[] | unknown>(input: K): K {
+    if (isObject(input)) {
+      return Object.keys(input).reduce(
+        (acc, key) => {
+          let value = cache[key];
+          if(!value) {
+            cache[key] = formatter(key);
+            value = cache[key];
+          }
+          return Object.assign(acc, { [value]: recurse(input[key]) }) as K
+        },
         {} as any,
       );
     } else if (isArray(input)) {
@@ -52,10 +76,11 @@ const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => str
 /**
  *
  * @param input Object to convert keys to camelCase
+ * @param cache boolean
  * @returns Object with keys converted to camelCase
  */
-export const toCamel = function <T>(input: T): SnakeToCamelCaseNested<T> {
-  return modifyObjectKeys(input, snakeToCamel);
+export const toCamel = function <T>(input: T, cache?: boolean): SnakeToCamelCaseNested<T> {
+  return cache ? modifyObjectKeysWithCache(input, snakeToCamel) : modifyObjectKeys(input, snakeToCamel);
 };
 
 /**
@@ -63,6 +88,6 @@ export const toCamel = function <T>(input: T): SnakeToCamelCaseNested<T> {
  * @param input Object to convert keys to snake_case
  * @returns Object with keys converted to snake_case
  */
-export const toSnake = function <T>(input: T): CamelCaseToSnakeNested<T> {
-  return modifyObjectKeys(input, camelToSnake);
+export const toSnake = function <T>(input: T, cache?: boolean): CamelCaseToSnakeNested<T> {
+  return cache ? modifyObjectKeysWithCache(input, camelToSnake) : modifyObjectKeys(input, camelToSnake);
 };
