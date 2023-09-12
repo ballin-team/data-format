@@ -91,3 +91,7 @@ export const toCamel = function <T>(input: T, cache?: boolean): SnakeToCamelCase
 export const toSnake = function <T>(input: T, cache?: boolean): CamelCaseToSnakeNested<T> {
   return cache ? modifyObjectKeysWithCache(input, camelToSnake) : modifyObjectKeys(input, camelToSnake);
 };
+
+export const dummyFunc = function () {
+  console.log('dummy');
+}
