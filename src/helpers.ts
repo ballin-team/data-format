@@ -1,22 +1,22 @@
 const isArray = function (
-  input: Record<string, unknown> | Record<string, unknown>[] | unknown,
+  input: unknown,
 ): input is Record<string, unknown>[] {
   return Array.isArray(input);
 };
 
 const isObject = function (
-  obj: Record<string, unknown> | Record<string, unknown>[] | unknown,
-): obj is Record<string, unknown> {
-  return !isValidDate(obj) && obj === Object(obj) && !Array.isArray(obj) && typeof obj !== 'function';
+  input: unknown,
+): input is Record<string, unknown> {
+  return !isValidDate(input) && input === Object(input) && !Array.isArray(input) && typeof input !== 'function';
 };
 
-export const isValidDate = (value: any) => value instanceof Date;
+export const isValidDate = (input: unknown) => input instanceof Date;
 
-export const convertSnakeToCamel = (str: string): string =>
-  str.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toUpperCase().replace('-', '').replace('_', ''));
+export const convertSnakeToCamel = (input: string): string =>
+  input.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toUpperCase().replace('-', '').replace('_', ''));
 
-export const convertCamelToSnake = (str: string): string =>
-  str.replace(/([A-Z])/g, ($1: string) => `_${$1.toLowerCase()}`);
+export const convertCamelToSnake = (input: string): string =>
+  input.replace(/([A-Z])/g, ($1: string) => `_${$1.toLowerCase()}`);
 
 export const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => string): any {
   return (function recurse<K extends Record<string, unknown> | Record<string, unknown>[] | unknown>(input: K): K {
