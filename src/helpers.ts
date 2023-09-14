@@ -19,7 +19,7 @@ export const convertCamelToSnake = (input: string): string =>
   input.replace(/([A-Z])/g, ($1: string) => `_${$1.toLowerCase()}`);
 
 export const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => string): any {
-  return (function recurse<K extends Record<string, unknown> | Record<string, unknown>[] | unknown>(input: K): K {
+  return (function recurse<K>(input: K): K {
     if (isObject(input)) {
       return Object.keys(input).reduce((acc, key) => {
         return Object.assign(acc, { [formatter(key)]: recurse(input[key]) }) as K;
@@ -33,7 +33,7 @@ export const modifyObjectKeys = function <T>(input: T, formatter: (word: string)
 
 export const modifyObjectKeysWithCache = function <T>(input: T, formatter: (word: string) => string): any {
   const cache: Record<string, string> = {};
-  return (function recurse<K extends Record<string, unknown> | Record<string, unknown>[] | unknown>(input: K): K {
+  return (function recurse<K>(input: K): K {
     if (isObject(input)) {
       return Object.keys(input).reduce((acc, key) => {
         let value = cache[key];
