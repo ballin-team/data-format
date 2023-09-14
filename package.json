@@ -5,15 +5,17 @@
   "main": "./lib/cjs/index.js",
   "types": "./lib/cjs/types/index.d.ts",
   "scripts": {
-    "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p ./tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:esm": "tsc -p ./tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "clean": "rm -rf ./lib",
+    "lint": "eslint **.ts",
+    "lint:fix": "eslint --fix *.ts",
     "prepack": "npm run build",
+    "semantic-release": "semantic-release",
     "test": "jest --logHeapUsage --runInBand",
     "test:ci": "npm test -- --coverage --silent --noStackTrace",
-    "test:dev": "npm test --watch",
-    "semantic-release": "semantic-release"
+    "test:dev": "npm test --watch"
   },
   "repository": {
     "type": "git",
