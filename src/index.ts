@@ -1,21 +1,18 @@
 import {CamelCaseToSnakeNested, SnakeToCamelCaseNested} from './types';
-import {camelToSnake, modifyObjectKeysWithCache, snakeToCamel, modifyObjectKeys} from './helpers';
+import {convertCamelToSnake, modifyObjectKeysWithCache, convertSnakeToCamel, modifyObjectKeys} from './helpers';
 
 /**
- *
- * @param input Object to convert keys to camelCase
- * @param cache boolean
- * @returns Object with keys converted to camelCase
+ * @description Convert a flat or nested snake case object into camel case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
  */
-export const toCamel = function <T>(input: T, cache?: boolean): SnakeToCamelCaseNested<T> {
-  return cache ? modifyObjectKeysWithCache(input, snakeToCamel) : modifyObjectKeys(input, snakeToCamel);
+export const snakeToCamel = function <T>(input: T, useCache?: boolean): SnakeToCamelCaseNested<T> {
+  return useCache ? modifyObjectKeysWithCache(input, convertSnakeToCamel) : modifyObjectKeys(input, convertSnakeToCamel);
 };
 
 /**
- *
- * @param input Object to convert keys to snake_case
- * @returns Object with keys converted to snake_case
+ * @description Convert a flat or nested camel case object into snake case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
  */
-export const toSnake = function <T>(input: T, cache?: boolean): CamelCaseToSnakeNested<T> {
-  return cache ? modifyObjectKeysWithCache(input, camelToSnake) : modifyObjectKeys(input, camelToSnake);
+export const camelToSnake = function <T>(input: T, useCache?: boolean): CamelCaseToSnakeNested<T> {
+  return useCache ? modifyObjectKeysWithCache(input, convertCamelToSnake) : modifyObjectKeys(input, convertCamelToSnake);
 };

@@ -12,10 +12,10 @@ const isObject = function (
 
 export const isValidDate = (value: any) => value instanceof Date;
 
-export const snakeToCamel = (str: string): string =>
+export const convertSnakeToCamel = (str: string): string =>
   str.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toUpperCase().replace('-', '').replace('_', ''));
 
-export const camelToSnake = (str: string): string => str.replace(/([A-Z])/g, ($1: string) => `_${$1.toLowerCase()}`);
+export const convertCamelToSnake = (str: string): string => str.replace(/([A-Z])/g, ($1: string) => `_${$1.toLowerCase()}`);
 
 export const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => string): any {
   return (function recurse<K extends Record<string, unknown> | Record<string, unknown>[] | unknown>(input: K): K {
