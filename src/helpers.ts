@@ -1,13 +1,11 @@
-import { InputType } from './types';
-
 const isArray = function (
-  input: InputType,
+  input: unknown,
 ): input is Record<string, unknown>[] {
   return Array.isArray(input);
 };
 
 const isObject = function (
-  input: InputType,
+  input: unknown,
 ): input is Record<string, unknown> {
   return !isValidDate(input) && input === Object(input) && !Array.isArray(input) && typeof input !== 'function';
 };
