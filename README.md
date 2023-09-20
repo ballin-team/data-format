@@ -13,16 +13,46 @@
 
 ## **Table of Contents**
 
+* [Introduction](#Introduction)
 * [Getting Started](#-getting-started)
 
 ---
 
+## **Introduction**
+Hey everyone!
+
+If you are in troubles to maintain the object style in your application it's library is perfect for your.
+The data-format give to you methods to convert data style, like: from camelCase to snake_case and from snake_case to camelCase.
+
 ## 🧗 **Getting Started**
 
+### From camelCase to snake_case
    ```typescript
-    import { camelToSnake, snakeToCamel } from '@ballin-team/data-format';
+    import { camelToSnake } from '@ballin-team/data-format';
 
-    const convertToSnake = camelToSnake({ camelKey: 'value' }); // { camel_key: 'value' }
-    const convertedToCamel = snakeToCamel({ snake_key: 'value' }); // { snakeKey: 'value' }
-    const longAndrepeatedKeys = snakeToCamel({ snake_key: 'value', ... }, true); // { snakeKey: 'value', ... }
+    const user = { id: 1, firstName: 'John', lastName: 'Cena'};
+    const snakeObject = camelToSnake(user);
+    console.log(snakeObject); // { id: 1, first_name: 'John', last_name: 'Cena'}
+   ```
+
+### From snake_case to camelCase
+   ```typescript
+    import { snakeToCamel } from '@ballin-team/data-format';
+
+    const user = { id: 2, first_name: 'Rey', last_name: 'Mysterio'};
+    const camelObject = snakeToCamel(user);
+    console.log(camelObject); // { id: 2, firstName: 'Rey', lastName: 'Mysterio'}
+   ```
+### For repetitive key names
+For huge data with repetitive key names you can pass the argument useCache as true to avoid convert the same key many times.
+   ```typescript
+    import { snakeToCamel } from '@ballin-team/data-format';
+
+    const users = [
+      { id: 1, first_name: 'John', last_name: 'Cena'},
+      { id: 2, first_name: 'Rey', last_name: 'Mysterio'},
+      ...,
+    ];
+    
+    const longAndrepeatedKeys = snakeToCamel(users, true); // [{ id: 1, firstName: 'John', lastName: 'Cena'}, { id: 2, firstName: 'Rey', lastName: 'Mysterio'}, ...]
    ```
