@@ -1,7 +1,7 @@
 <p align="center">
   data-format
 </p>
-<p align="center">The best and performative way to naming conventions like: snake_case, camelCase</p>
+<p align="center">The best and performative way to convert naming conventions like: snake_case, camelCase</p>
 
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ballin-team_data-format&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ballin-team_data-format)
@@ -22,7 +22,7 @@
 Hey everyone!
 
 If you need help maintaining the naming convention in your application, this library is perfect for you.
-The data-format gives you methods to convert the naming convention, like camelCase to snake_case and from snake_case to camelCase.
+The data-format gives you methods to convert the naming convention, like camelCase, snake_case and flatcase.
 
 ## 🧗 **Getting Started**
 
