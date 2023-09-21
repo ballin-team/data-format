@@ -20,6 +20,10 @@ export const convertCamelToSnake = (input: string): string =>
 
 export const convertCamelToFlat = (input: string): string => input.toLowerCase();
 
+export const convertSnakeToFlat = (input: string): string =>
+  input.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toLowerCase().replace('-', '').replace('_', ''));
+
+
 export const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => string): any {
   return (function recurse<K>(input: K): K {
     if (isObject(input)) {
