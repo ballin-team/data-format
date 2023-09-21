@@ -21,7 +21,7 @@
 ## **Introduction**
 Hey everyone!
 
-If you are in troubles to maintain the object style in your application it's library is perfect for your.
+If you are in troubles to maintain the object style in your application it's library is perfect for you.
 The data-format give to you methods to convert data style, like: from camelCase to snake_case and from snake_case to camelCase.
 
 ## 🧗 **Getting Started**
@@ -54,5 +54,5 @@ For huge data with repetitive key names you can pass the argument useCache as tr
       ...,
     ];
     
-    const longAndrepeatedKeys = snakeToCamel(users, true); // [{ id: 1, firstName: 'John', lastName: 'Cena'}, { id: 2, firstName: 'Rey', lastName: 'Mysterio'}, ...]
+    const hugeAndRepeatedKeys = snakeToCamel(users, true); // [{ id: 1, firstName: 'John', lastName: 'Cena'}, { id: 2, firstName: 'Rey', lastName: 'Mysterio'}, ...]
    ```
