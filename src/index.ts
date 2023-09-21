@@ -1,10 +1,10 @@
-import { CamelCaseToFlatNested, CamelCaseToSnakeNested, SnakeToCamelCaseNested } from './types';
+import { CamelCaseToFlatNested, CamelCaseToSnakeNested, SnakeCaseToFlatNested, SnakeToCamelCaseNested } from './types';
 import {
   convertCamelToSnake,
   modifyObjectKeysWithCache,
   convertSnakeToCamel,
   modifyObjectKeys,
-  convertCamelToFlat,
+  convertCamelToFlat, convertSnakeToFlat,
 } from './helpers';
 
 /**
@@ -35,6 +35,16 @@ export const camelToFlat = function <T>(input: T, useCache?: boolean): CamelCase
   return useCache
     ? modifyObjectKeysWithCache(input, convertCamelToFlat)
     : modifyObjectKeys(input, convertCamelToFlat);
+}
+
+/**
+ * @description Convert a flat or nested snake case object into flat case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
+ */
+export const snakeToFlat = function <T>(input: T, useCache?: boolean): SnakeCaseToFlatNested<T> {
+  return useCache
+    ? modifyObjectKeysWithCache(input, convertSnakeToFlat)
+    : modifyObjectKeys(input, convertSnakeToFlat);
 }
 
 export * from './types';

@@ -1,7 +1,7 @@
 <p align="center">
   data-format
 </p>
-<p align="center">The best and performative way to convert styles like: snake_case, camelCase</p>
+<p align="center">The best and performative way to naming conventions like: snake_case, camelCase</p>
 
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ballin-team_data-format&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ballin-team_data-format)
@@ -21,8 +21,8 @@
 ## **Introduction**
 Hey everyone!
 
-If you are in troubles to maintain the object style in your application it's library is perfect for you.
-The data-format give to you methods to convert data style, like: from camelCase to snake_case and from snake_case to camelCase.
+If you need help maintaining the naming convention in your application, this library is perfect for you.
+The data-format gives you methods to convert the naming convention, like camelCase to snake_case and from snake_case to camelCase.
 
 ## 🧗 **Getting Started**
 
@@ -49,7 +49,15 @@ The data-format give to you methods to convert data style, like: from camelCase 
 
     const user = { id: 3, firstName: 'Undertaker', lastName: null };
     const flatObject = camelToflat(user);
-    console.log(flatObject); // { id: 2, firstname: 'Undertaker', lastname: null }
+    console.log(flatObject); // { id: 3, firstname: 'Undertaker', lastname: null }
+   ```
+### From snake_case to flatcase
+   ```typescript
+    import { snakeToflat } from '@ballin-team/data-format';
+
+    const user = { id: 3, first_name: 'Undertaker', last_name: null };
+    const flatObject = snakeToflat(user);
+    console.log(flatObject); // { id: 3, firstname: 'Undertaker', lastname: null }
    ```
 ### For repetitive key names
 For huge data with repetitive key names you can pass the argument useCache as true to avoid convert the same key many times.

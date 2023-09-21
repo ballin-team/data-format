@@ -25,3 +25,13 @@ export type CamelCaseToFlatNested<T> = T extends object
     [K in keyof T as CamelCaseToFlatCase<K & string>]: CamelCaseToFlatNested<T[K]>;
   }
   : T;
+
+export type SnakeToFlatCase<S extends string> = S extends `${infer T}_${infer U}`
+  ? Lowercase<`${T}${SnakeToFlatCase<U>}`>
+  : S;
+
+export type SnakeCaseToFlatNested<T> = T extends object
+  ? {
+    [K in keyof T as SnakeToFlatCase<K & string>]: SnakeCaseToFlatNested<T[K]>;
+  }
+  : T;

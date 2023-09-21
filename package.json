@@ -1,7 +1,7 @@
 {
   "name": "@ballin-team/data-format",
   "version": "0.0.0-development",
-  "description": "",
+  "description": "The best and performative way to convert naming convention",
   "main": "./lib/cjs/index.js",
   "types": "./lib/cjs/types/index.d.ts",
   "scripts": {
@@ -21,8 +21,12 @@
     "type": "git",
     "url": "https://github.com/ballin-team/data-format.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "email": "renan.soares.francisco@gmail.com",
+    "name": "Renan",
+    "url": "https://rfrancisco.me/"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ballin-team/data-format/issues"
   },
