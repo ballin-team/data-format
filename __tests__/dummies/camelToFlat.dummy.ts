@@ -6,7 +6,7 @@ export const validCamelToFlatDummies: [string, unknown, unknown][] = [
     { camelKey: 'value', nestedCamelKey: { nestedKey: 'value' } },
     { camelkey: 'value', nestedcamelkey: { nestedkey: 'value' } },
   ],
-  ['array with flat objects', [{ camelKey: 'value' }], [{ camel_key: 'value' }]],
+  ['array with flat objects', [{ camelKey: 'value' }], [{ camelkey: 'value' }]],
   [
     'array with nested object',
     [{ camelKey: 'value', nestedCamelKey: [{ nestedKey: 'value' }] }],
