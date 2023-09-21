@@ -1,6 +1,7 @@
 export * from './camelToSnake.dummy';
 export * from './snakeToCamel.dummy';
 export * from './camelToFlat.dummy';
+export * from './snakeToFlat.dummy';
 
 export const objNested = {
   test_key_1: true,
