@@ -43,6 +43,14 @@ The data-format give to you methods to convert data style, like: from camelCase 
     const camelObject = snakeToCamel(user);
     console.log(camelObject); // { id: 2, firstName: 'Rey', lastName: 'Mysterio'}
    ```
+### From camelCase to flatcase
+   ```typescript
+    import { camelToflat } from '@ballin-team/data-format';
+
+    const user = { id: 3, firstName: 'Undertaker', lastName: null };
+    const flatObject = camelToflat(user);
+    console.log(flatObject); // { id: 2, firstname: 'Undertaker', lastname: null }
+   ```
 ### For repetitive key names
 For huge data with repetitive key names you can pass the argument useCache as true to avoid convert the same key many times.
    ```typescript

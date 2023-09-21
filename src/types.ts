@@ -17,3 +17,11 @@ export type CamelCaseToSnakeNested<T> = T extends object
       [K in keyof T as CamelToSnakeCase<K & string>]: CamelCaseToSnakeNested<T[K]>;
     }
   : T;
+
+export type CamelCaseToFlatCase<S extends string> = Lowercase<S>;
+
+export type CamelCaseToFlatNested<T> = T extends object
+  ? {
+    [K in keyof T as CamelCaseToFlatCase<K & string>]: CamelCaseToFlatNested<T[K]>;
+  }
+  : T;
