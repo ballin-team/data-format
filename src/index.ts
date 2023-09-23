@@ -88,7 +88,6 @@ export const kebabToSnake = function <T>(input: T, useCache?: boolean): KebabCas
     : modifyObjectKeys(input, convertKebabToSnake);
 };
 
-
 /**
  * @description Convert a flat or nested kebab case object into camel case. For long objects with repeated keys
  * you can set the **useCache** argument as true.
