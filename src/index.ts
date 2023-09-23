@@ -1,10 +1,21 @@
-import { CamelCaseToFlatNested, CamelCaseToSnakeNested, SnakeCaseToFlatNested, SnakeToCamelCaseNested } from './types';
+import {
+  CamelCaseToFlatNested, CamelCaseToKebabNested,
+  CamelCaseToSnakeNested, KebabCaseToCamelNested, KebabCaseToSnakeNested,
+  SnakeCaseToFlatNested,
+  SnakeToCamelCaseNested,
+  SnakeToKebabCaseNested,
+} from './types';
 import {
   convertCamelToSnake,
   modifyObjectKeysWithCache,
   convertSnakeToCamel,
   modifyObjectKeys,
-  convertCamelToFlat, convertSnakeToFlat,
+  convertCamelToFlat,
+  convertSnakeToFlat,
+  convertSnakeToKebab,
+  convertCamelToKebab,
+  convertKebabToSnake,
+  convertKebabToCamel,
 } from './helpers';
 
 /**
@@ -46,5 +57,46 @@ export const snakeToFlat = function <T>(input: T, useCache?: boolean): SnakeCase
     ? modifyObjectKeysWithCache(input, convertSnakeToFlat)
     : modifyObjectKeys(input, convertSnakeToFlat);
 }
+
+/**
+ * @description Convert a flat or nested snake case object into kebab case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
+ */
+export const snakeToKebab = function <T>(input: T, useCache?: boolean): SnakeToKebabCaseNested<T> {
+  return useCache
+    ? modifyObjectKeysWithCache(input, convertSnakeToKebab)
+    : modifyObjectKeys(input, convertSnakeToKebab);
+};
+
+/**
+ * @description Convert a flat or nested camel case object into kebab case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
+ */
+export const camelToKebab = function <T>(input: T, useCache?: boolean): CamelCaseToKebabNested<T> {
+  return useCache
+    ? modifyObjectKeysWithCache(input, convertCamelToKebab)
+    : modifyObjectKeys(input, convertCamelToKebab);
+};
+
+/**
+ * @description Convert a flat or nested kebab case object into snake case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
+ */
+export const kebabToSnake = function <T>(input: T, useCache?: boolean): KebabCaseToSnakeNested<T> {
+  return useCache
+    ? modifyObjectKeysWithCache(input, convertKebabToSnake)
+    : modifyObjectKeys(input, convertKebabToSnake);
+};
+
+
+/**
+ * @description Convert a flat or nested kebab case object into camel case. For long objects with repeated keys
+ * you can set the **useCache** argument as true.
+ */
+export const kebabToCamel = function <T>(input: T, useCache?: boolean): KebabCaseToCamelNested<T> {
+  return useCache
+    ? modifyObjectKeysWithCache(input, convertKebabToCamel)
+    : modifyObjectKeys(input, convertKebabToCamel);
+};
 
 export * from './types';
