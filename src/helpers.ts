@@ -23,6 +23,17 @@ export const convertCamelToFlat = (input: string): string => input.toLowerCase()
 export const convertSnakeToFlat = (input: string): string =>
   input.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toLowerCase().replace('-', '').replace('_', ''));
 
+export const convertSnakeToKebab = (input: string): string =>
+  input.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toLowerCase().replace('_', '-'));
+
+export const convertCamelToKebab = (input: string): string =>
+  input.replace(/([A-Z])/g, ($1: string) => `-${$1.toLowerCase()}`);
+
+export const convertKebabToSnake = (input: string): string =>
+  input.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toLowerCase().replace('-', '_'));
+
+export const convertKebabToCamel = (input: string): string =>
+  input.replace(/([_-][a-z|0-9])/gi, ($1: string) => $1.toUpperCase().replace('-', ''));
 
 export const modifyObjectKeys = function <T>(input: T, formatter: (word: string) => string): any {
   return (function recurse<K>(input: K): K {

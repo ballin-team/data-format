@@ -1,7 +1,7 @@
 <p align="center">
   data-format
 </p>
-<p align="center">The best and performative way to convert naming conventions like: snake_case, camelCase</p>
+<p align="center">The best and performative way to convert naming conventions like: snake_case, camelCase, flatcase, kebab-case</p>
 
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ballin-team_data-format&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ballin-team_data-format)
@@ -22,7 +22,7 @@
 Hey everyone!
 
 If you need help maintaining the naming convention in your application, this library is perfect for you.
-The data-format gives you methods to convert the naming convention, like camelCase, snake_case and flatcase.
+The data-format gives you methods to convert the naming convention, like snake_case, camelCase, flatcase, kebab-case.
 
 ## 🧗 **Getting Started**
 
@@ -35,6 +35,24 @@ The data-format gives you methods to convert the naming convention, like camelCa
     console.log(snakeObject); // { id: 1, first_name: 'John', last_name: 'Cena'}
    ```
 
+### From camelCase to flatcase
+   ```typescript
+    import { camelToFlat } from '@ballin-team/data-format';
+
+    const user = { id: 3, firstName: 'Undertaker', lastName: null };
+    const flatObject = camelToFlat(user);
+    console.log(flatObject); // { id: 3, firstname: 'Undertaker', lastname: null }
+   ```
+
+### From camelCase to kebab-case
+   ```typescript
+    import { camelToKebab } from '@ballin-team/data-format';
+
+    const user = { id: 3, firstName: 'Undertaker', lastName: null };
+    const kebabObject = camelToKebab(user);
+    console.log(kebabObject); // { id: 3, 'first-name': 'Undertaker', 'last-name': null }
+   ```
+
 ### From snake_case to camelCase
    ```typescript
     import { snakeToCamel } from '@ballin-team/data-format';
@@ -43,22 +61,43 @@ The data-format gives you methods to convert the naming convention, like camelCa
     const camelObject = snakeToCamel(user);
     console.log(camelObject); // { id: 2, firstName: 'Rey', lastName: 'Mysterio'}
    ```
-### From camelCase to flatcase
-   ```typescript
-    import { camelToflat } from '@ballin-team/data-format';
 
-    const user = { id: 3, firstName: 'Undertaker', lastName: null };
-    const flatObject = camelToflat(user);
-    console.log(flatObject); // { id: 3, firstname: 'Undertaker', lastname: null }
-   ```
 ### From snake_case to flatcase
    ```typescript
-    import { snakeToflat } from '@ballin-team/data-format';
+    import { snakeToFlat } from '@ballin-team/data-format';
 
     const user = { id: 3, first_name: 'Undertaker', last_name: null };
-    const flatObject = snakeToflat(user);
+    const flatObject = snakeToFlat(user);
     console.log(flatObject); // { id: 3, firstname: 'Undertaker', lastname: null }
    ```
+
+### From snake_case to kebab-case
+   ```typescript
+    import { snakeToKebab } from '@ballin-team/data-format';
+
+    const user = { id: 3, first_name: 'Undertaker', last_name: null };
+    const kebabObject = snakeToKebab(user);
+    console.log(kebabObject); // { id: 3, 'first-name': 'Undertaker', 'last-name': null }
+   ```
+
+### From kebab-case to snake_case
+   ```typescript
+    import { kebabToSnake } from '@ballin-team/data-format';
+
+    const user = { id: 3, 'first-name': 'Undertaker', 'last-name': null };
+    const snakeObject = kebabToSnake(user);
+    console.log(snakeObject); // { id: 3, first_name: 'Undertaker', last_name: null }
+   ```
+
+### From kebab-case to camelCase
+   ```typescript
+    import { kebabToCamel } from '@ballin-team/data-format';
+
+    const user = { id: 3, 'first-name': 'Undertaker', 'last-name': null };
+    const camelObject = kebabToCamel(user);
+    console.log(camelObject); // { id: 3, firstName: 'Undertaker', lastName: null }
+   ```
+
 ### For repetitive key names
 For huge data with repetitive key names you can pass the argument useCache as true to avoid convert the same key many times.
    ```typescript
